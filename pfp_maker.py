@@ -57,7 +57,7 @@ def new_patt(colour):
     generate_code(colour)
 
 
-# global code
+
 code = ""
 
 master = Tk()
