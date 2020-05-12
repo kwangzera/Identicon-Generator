@@ -4,3 +4,4 @@ instead of buttons, maybe a dropdown menu (unlikely)
 export image as jpeg
 general dimensions
 icon
+hover over buttons and better button format
