@@ -2,11 +2,25 @@ from tkinter import *
 from random import randint, choice
 
 
+def createNewWindow():
+    global code
+    top2 = Toplevel(master)
+    top2.title("Import and Export")
+
+    Label(top2, text=code).pack()
+    
+    top2.resizable(False, False)    
+    # top2.transient(master)
+    top2.grab_set()
+    master.wait_window(top2)
+
+        
 def rand_hex():
     return f"#{randint(0, 0xFFFFFF):06x}"
 
 
 def generate_code(hex_val):
+    global code
     code = f"{hex_val}_"
     for i in range(7):
         for j in range(7):
@@ -15,7 +29,6 @@ def generate_code(hex_val):
             else:
                 code += "1"
 
-    print(code)
 
 
 def new_pfp_colour(hex_val):
@@ -60,16 +73,15 @@ def new_patt(hex_val):
 
 
 master = Tk()
+master.title("Identicon Generator")
+# master.iconbitmap("pfp_icon.ico")
 master.minsize(0, 0)
 
 colour = rand_hex()
 grid = [[-1 for i in range(7)] for i in range(7)]
 
 buttons_frame = Frame(master, height=40)
-buttons_frame.grid(row=0, column=0, sticky=N+E+S+W)
-buttons_frame.grid_columnconfigure(0, minsize=1, weight=1)
-buttons_frame.grid_columnconfigure(1, minsize=1, weight=1)
-buttons_frame.grid_columnconfigure(2, minsize=1, weight=1)
+buttons_frame.pack(fill=X)
 
 test_frame = Frame(
     master,
@@ -77,27 +89,31 @@ test_frame = Frame(
     width=420,
     bg="#000000"
 )
-test_frame.grid(row=1, column=0, sticky=N+E+S+W)
+test_frame.pack(fill=X, padx=35, pady=35)
 
 b1 = Button(
     buttons_frame,
     text="New Pattern",
     command=lambda: new_patt(colour)
 )
-b1.grid(row=0, column=0, sticky=N+E+S+W)
+b1.pack(side=LEFT, fill=X, expand=1)
+b1.config(width=1)
 
 b2 = Button(
     buttons_frame,
     text="New Colour",
     command=lambda: new_pfp_colour(rand_hex())
 )
-b2.grid(row=0, column=1, sticky=N+E+S+W)
+b2.pack(side=LEFT, fill=X, expand=1)
+b2.config(width=1)
 
 b3 = Button(
     buttons_frame,
-    text="More",
+    text="Custom",
+    command=lambda: createNewWindow()
 )
-b3.grid(row=0, column=2, sticky=N+E+S+W)
+b3.pack(side=LEFT, fill=X, expand=1)
+b3.config(width=1)
 
 new_patt(colour)
 
