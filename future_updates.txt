@@ -1,0 +1,5 @@
+import/export feature
+import/export codes - currently they are too long. Think of a way to decompress?
+instead of buttons, maybe a dropdown menu (unlikely)
+export image as jpeg
+general dimensions
