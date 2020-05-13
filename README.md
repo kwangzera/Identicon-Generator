@@ -1,2 +1,2 @@
 # Identicon-Generator
-Download and click the python file to run the program.
+Download and double click the python file to run the program.
