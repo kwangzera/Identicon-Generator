@@ -1,4 +1,4 @@
-#Identicon-Generator
+# Identicon-Generator
 
 Open the folder pfp_maker and double click pfp_maker.py to run the program
 
