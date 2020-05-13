@@ -5,9 +5,9 @@ This program randomly generates symmetrical 7 by 7 identicons with a border.
 Once opened there are the options to generate a new pattern and a new colour separately.
 Alternatively, the custom button can be used to import IDs to create customized patterns.
 
-The general format of a ID: `#hex_row1_row2_row3_row4_row5_row6_row7`
-`#hex` represents the colour of the pattern
-each `row` is a binary string with a 0 representing white (#FFFFFF) and a 1 representing the colour (#hex)
+The general format of a ID: `#hex_row1_row2_row3_row4_row5_row6_row7`  
+`#hex` represents the colour of the pattern  
+`row` is a binary string with a 0 representing white (#FFFFFF) and a 1 representing the colour (#hex)
 
 # Example IDs
 `#d8b016_1100011_1101011_0000000_1001001_1001001_1011101_1101011`
