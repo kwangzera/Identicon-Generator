@@ -1,5 +1,5 @@
 import/export feature (working on it)
-import/export codes - currently they are too long. Think of a way to decompress?
+import/export codes - long code = readable code = good code
 export image as jpeg
 general dimensions
 icon
