@@ -4,7 +4,7 @@ Made using Python Tkinter.
 
 ### Basics
 This program generates symmetrical 7 by 7 identicons.  
-The `New Patten`and `New Colour` buttons generate a random pattern and a random colour respectively.  
+The `New Patten` and `New Colour` buttons generate a random pattern and a random colour respectively.  
 The `Custom` button brings up a dialog that allows you to import and export identicons.  
 
 ### Importing and Exporting
