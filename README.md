@@ -8,8 +8,8 @@ The "New Patten" and "New Colour" buttons generate a random pattern and a random
 The "Custom" button brings up a dialog that allows you to import and export identicons.  
 
 ### Importing and Exporting
-Each pattern displayed can be represended by ID in the format of `colour_pattern`.  
-`colour` represents a 6-length hex colour.  
+Each pattern displayed can be represended by ID in the format of `#colour_pattern`.  
+`#colour` represents a 6-length hex colour.  
 `pattern` is a 7-length list of 7-length binary strings, joined by `_`.  
 In the pattern, `0` represents an empty tile (white) and `1` represents a filled tile (coloured).  
 
