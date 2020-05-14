@@ -1,2 +1,0 @@
-export image as jpeg
-general dimensions
