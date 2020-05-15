@@ -12,12 +12,12 @@ def createNewWindow():
     top2.iconbitmap("pfp_icon.ico")
 
     Label(top2, text="Export ID: ").grid(row=0, column=0, sticky=E)
-    omkapoor = Entry(top2, relief='flat',  state='readonly', fg="blue", width=70)
+    temp4 = Entry(top2, relief='flat',  state='readonly', fg="blue", width=70)
 
     var = StringVar()
     var.set(code)
-    omkapoor.config(textvariable=var)
-    omkapoor.grid(row=0, column=1, padx=1)
+    temp4.config(textvariable=var)
+    temp4.grid(row=0, column=1, padx=1)
 
 
     Label(top2, text="Import ID: ").grid(row=1, column=0, sticky=E)
