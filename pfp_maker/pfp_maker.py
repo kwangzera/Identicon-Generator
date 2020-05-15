@@ -12,6 +12,7 @@ def create_new_window():
     new_window.title("Import and Export")
     new_window.iconbitmap("pfp_icon.ico")
 
+    # Import and Export Labels
     Label(new_window, text="Export ID: ").grid(row=0, column=0, sticky=E)
     Label(new_window, text="Import ID: ").grid(row=1, column=0, sticky=E)
 

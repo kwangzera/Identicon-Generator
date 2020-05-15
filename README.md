@@ -5,10 +5,10 @@ Made using Python Tkinter.
 ### Basics
 This program generates symmetrical 7 by 7 identicons.  
 The `New Patten` and `New Colour` buttons generate a random pattern and a random colour respectively.  
-The `Custom` button brings up a dialog that allows you to import and export identicons.  
+The `Custom` button brings up a dialog that allows you to import and export identicons with a pattern ID.  
 
 ### Importing and Exporting
-Each pattern displayed can be represented by ID in the format of `#colour_pattern`.  
+Each pattern displayed can be represented by ID in the format of `#colour_pattern`.
 `#colour` is a 6 character long hex value representing a colour.  
 `pattern` is a 7-length list of 7-length binary strings, joined by `_`.  
 In the pattern, `0` represents an empty tile (white) and `1` represents a filled tile (coloured).  
