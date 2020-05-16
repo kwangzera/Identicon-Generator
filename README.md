@@ -1,5 +1,5 @@
 # Identicon Generator  
-Open the folder pfp_maker and double click pfp_maker.py to run the program.  
+Once downloaded, open the pfp_maker and double click pfp_maker.py to run the program.  
 Made using Python Tkinter.  
 
 ### Basics
