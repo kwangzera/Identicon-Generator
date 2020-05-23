@@ -6,13 +6,12 @@ import os
 import re
 
 '''
+general function for finding hex length stuff
 fix the pil crap
 add better comments
 reformat code
 get rid of printing out the debug statement of pattern_id
 '''
-
-
 
 def create_new_window():
     global pattern_id
