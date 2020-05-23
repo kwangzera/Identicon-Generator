@@ -18,10 +18,11 @@ In the pattern, `0` represents an empty tile (white) and `1` represents a filled
 
 ### Saving Identicon as PNG
 To save an identicon as a PNG, press the corresponding button that allows you to save after clicking the `Custom` button
-The image will be saved in the same file location as pfp_maker.py.
-(Windows exclusive) In addition, a prompt will appear to let you preview the image.  
+The image will be saved as `pattern_id.png` in the same file location as pfp_maker.py.
+(Windows exclusive) In addition, a prompt will appear to let you preview the image.
+The identicons located in `demo_identicons` are the ones matching the Example IDs.
 
 ### Example IDs
+`#17ca0c_1001001_1000001_0111110_1101011_0010100_0101010_0011100`
 `#d8b016_1100011_1101011_0000000_1001001_1001001_1011101_1101011`
 `#fb50d5_1111111_1111111_0100010_1101011_1000001_1100011_1001001`
-`#17ca0c_1001001_1000001_0111110_1101011_0010100_0101010_0011100`

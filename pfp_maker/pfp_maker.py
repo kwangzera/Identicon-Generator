@@ -82,7 +82,7 @@ def save_image(pattern_id):
         y1 += 50
         y2 += 50
 
-    filename = "temp_icon.png"
+    filename = f"{pattern_id}.png"
     image1.save(filename)
     os.startfile(filename)
 
