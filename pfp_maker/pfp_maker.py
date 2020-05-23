@@ -6,6 +6,7 @@ import os
 import re
 
 '''
+fix the pil crap
 add better comments
 reformat code
 get rid of printing out the debug statement of pattern_id
