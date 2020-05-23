@@ -1,11 +1,12 @@
-from PIL import Image, ImageDraw
 from random import randint, choice
 from tkinter import *
 import PIL.Image
+import PIL.ImageDraw
 import os
 import re
 
 '''
+do something about them imports
 general function for finding hex length stuff
 fix the pil crap
 add better comments
@@ -59,7 +60,7 @@ def rand_hex():
 def save_image(pattern_id):
     hex_val = pattern_id[:7]
     pattern = pattern_id[8:].split("_")
-    # new_window.destroy()
+    new_window.destroy()
     print(pattern)
     image1 = PIL.Image.new("RGB", (420, 420), hex_val)
     draw = PIL.ImageDraw.Draw(image1)
