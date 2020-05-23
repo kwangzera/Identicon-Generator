@@ -1,6 +1,16 @@
+from PIL import Image, ImageDraw
 from random import randint, choice
 from tkinter import *
+import PIL.Image
+import os
 import re
+
+'''
+add better comments
+reformat code
+get rid of printing out the debug statement of pattern_id
+'''
+
 
 
 def create_new_window():
@@ -15,6 +25,7 @@ def create_new_window():
     # Import and Export Labels
     Label(new_window, text="Export ID: ").grid(row=0, column=0, sticky=E)
     Label(new_window, text="Import ID: ").grid(row=1, column=0, sticky=E)
+    Label(new_window, text="Save As: ").grid(row=2, column=0, sticky=E)
 
     # Displaying text in an input box to allow text selection
     display = StringVar()
@@ -22,12 +33,16 @@ def create_new_window():
 
     # Entry object acting like a label
     export_text = Entry(new_window, relief='flat', textvariable=display, state='readonly', fg="blue", width=70)
-    export_text.grid(row=0, column=1, padx=1)
+    export_text.grid(row=0, column=1, padx=1, pady=1)
 
     # Entry object to allow user to input an ID
     import_prompt = Entry(new_window, fg="blue")
     import_prompt.grid(row=1, column=1, sticky=E+W, padx=1, pady=1)
     import_prompt.bind('<Return>', import_check)
+
+    # Save image promtp (add comment later)
+    save_button = Button(new_window, text="Click to save Identicon as PNG", command=lambda: save_image(pattern_id))  # add command later
+    save_button.grid(row=2, column=1, padx=1, pady=1, sticky=E+W)
 
     # Only allowing the opening of one new window and doesn't allow access to features in master
     new_window.transient(master)
@@ -39,6 +54,36 @@ def create_new_window():
 
 def rand_hex():
     return f"#{randint(0, 0xFFFFFF):06x}"
+
+
+def save_image(pattern_id):
+    hex_val = pattern_id[:7]
+    pattern = pattern_id[8:].split("_")
+    # new_window.destroy()
+    print(pattern)
+    image1 = PIL.Image.new("RGB", (420, 420), hex_val)
+    draw = PIL.ImageDraw.Draw(image1)
+
+    x1 = 35
+    y1 = 35
+
+    x2 = 85
+    y2 = 85
+
+    for i in range(7):
+        for j in range(7):
+            c = 50 * j
+            if pattern[i][j] == "1":
+                draw.rectangle((x1+c, y1, x2+c, y2), fill=hex_val)
+            else:
+                draw.rectangle((x1+c, y1, x2+c, y2), fill="#FFFFFF")
+
+        y1 += 50
+        y2 += 50
+
+    filename = "temp_icon.png"
+    image1.save(filename)
+    os.startfile(filename)
 
 
 def valid_id(import_id):
@@ -173,6 +218,10 @@ b3.config(width=1)
 # Generates a random colour with a random pattern on startup
 colour = rand_hex()
 new_patt(colour)
+
+# saves current image
+# save_image(colour)
+
 
 master.resizable(False, False)
 master.mainloop()
