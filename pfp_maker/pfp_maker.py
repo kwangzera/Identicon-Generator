@@ -6,7 +6,7 @@ import os
 import re
 
 '''
-actual dimensions
+actual dimensions, real measurements of actual chs ident
 do something about them imports
 general function for finding hex length stuff
 fix the pil crap
