@@ -6,6 +6,7 @@ import os
 import re
 
 '''
+actual dimensions
 do something about them imports
 general function for finding hex length stuff
 fix the pil crap
