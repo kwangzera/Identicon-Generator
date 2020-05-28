@@ -5,8 +5,7 @@ import os
 import re
 
 """
-actual dimensions, real measurements of actual chs identicon
-do something about them imports
+do something about them imports (ordering)
 general function for finding hex length stuff
 add better comments
 reformat code
@@ -61,7 +60,7 @@ def save_image(pattern_id):
     hex_val = pattern_id[:7]
     pattern = pattern_id[8:].split("_")
     new_window.destroy()
-    print(pattern)
+
     image1 = Image.new("RGB", (420, 420), hex_val)
     draw = ImageDraw.Draw(image1)
 
