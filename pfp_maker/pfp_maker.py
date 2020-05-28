@@ -1,7 +1,6 @@
+from PIL import Image, ImageDraw
 from random import randint, choice
-from tkinter import *
-import PIL.Image
-import PIL.ImageDraw
+import tkinter as tk
 import os
 import re
 
@@ -9,42 +8,42 @@ import re
 actual dimensions, real measurements of actual chs identicon
 do something about them imports
 general function for finding hex length stuff
-fix the pil crap
 add better comments
 reformat code
 get rid of printing out the debug statement of pattern_id
 '''
+
 
 def create_new_window():
     global pattern_id
     global new_window
     global import_prompt
 
-    new_window = Toplevel(master)
+    new_window = tk.Toplevel(master)
     new_window.title("Import and Export")
     new_window.iconbitmap("pfp_icon.ico")
 
     # Import and Export Labels
-    Label(new_window, text="Export ID: ").grid(row=0, column=0, sticky=E)
-    Label(new_window, text="Import ID: ").grid(row=1, column=0, sticky=E)
-    Label(new_window, text="Save As: ").grid(row=2, column=0, sticky=E)
+    tk.Label(new_window, text="Export ID: ").grid(row=0, column=0, sticky="e")
+    tk.Label(new_window, text="Import ID: ").grid(row=1, column=0, sticky="e")
+    tk.Label(new_window, text="Save As: ").grid(row=2, column=0, sticky="e")
 
     # Displaying text in an input box to allow text selection
-    display = StringVar()
+    display = tk.StringVar()
     display.set(pattern_id)
 
     # Entry object acting like a label
-    export_text = Entry(new_window, relief='flat', textvariable=display, state='readonly', fg="blue", width=70)
+    export_text = tk.Entry(new_window, relief='flat', textvariable=display, state='readonly', fg="blue", width=70)
     export_text.grid(row=0, column=1, padx=1, pady=1)
 
     # Entry object to allow user to input an ID
-    import_prompt = Entry(new_window, fg="blue")
-    import_prompt.grid(row=1, column=1, sticky=E+W, padx=1, pady=1)
+    import_prompt = tk.Entry(new_window, fg="blue")
+    import_prompt.grid(row=1, column=1, sticky="ew", padx=1, pady=1)
     import_prompt.bind('<Return>', import_check)
 
     # Save image promtp (add comment later)
-    save_button = Button(new_window, text="Click to save Identicon as PNG", command=lambda: save_image(pattern_id))  # add command later
-    save_button.grid(row=2, column=1, padx=1, pady=1, sticky=E+W)
+    save_button = tk.Button(new_window, text="Click to save Identicon as PNG", command=lambda: save_image(pattern_id))  # add command later
+    save_button.grid(row=2, column=1, padx=1, pady=1, sticky="ew")
 
     # Only allowing the opening of one new window and doesn't allow access to features in master
     new_window.transient(master)
@@ -63,8 +62,8 @@ def save_image(pattern_id):
     pattern = pattern_id[8:].split("_")
     new_window.destroy()
     print(pattern)
-    image1 = PIL.Image.new("RGB", (420, 420), hex_val)
-    draw = PIL.ImageDraw.Draw(image1)
+    image1 = Image.new("RGB", (420, 420), hex_val)
+    draw = ImageDraw.Draw(image1)
 
     x1 = 35
     y1 = 35
@@ -74,11 +73,11 @@ def save_image(pattern_id):
 
     for i in range(7):
         for j in range(7):
-            c = 50 * j
+            dx = 50 * j
             if pattern[i][j] == "1":
-                draw.rectangle((x1+c, y1, x2+c, y2), fill=hex_val)
+                draw.rectangle((x1+dx, y1, x2+dx, y2), fill=hex_val)
             else:
-                draw.rectangle((x1+c, y1, x2+c, y2), fill="#FFFFFF")
+                draw.rectangle((x1+dx, y1, x2+dx, y2), fill="#FFFFFF")
 
         y1 += 50
         y2 += 50
@@ -124,12 +123,12 @@ def read_id(import_id):
             # Display a white coloured tile
             if pattern[i][j] == "0":
                 grid[i][j] = "#FFFFFF"
-                Canvas(main_canvas, width=50, height=50, bg="#FFFFFF", highlightthickness=0).grid(row=i, column=j)
+                tk.Canvas(main_canvas, width=50, height=50, bg="#FFFFFF", highlightthickness=0).grid(row=i, column=j)
 
             # Display a coloured tile
             else:
                 grid[i][j] = hex_val
-                Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
+                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
 
     # Updates border colour, sets new id and colour based on current colour
     master.config(bg=hex_val)
@@ -161,7 +160,7 @@ def new_pfp_colour(hex_val):
         for j in range(7):
             # Overwrite the current colour with a new colour if the current tile is not white0
             if grid[i][j] != "#FFFFFF":
-                Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
+                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
 
     master.config(bg=hex_val)
     generate_id(hex_val)
@@ -181,13 +180,13 @@ def new_patt(hex_val):
 
     for i in range(7):
         for j in range(7):
-            Canvas(main_canvas, width=50, height=50, bg=grid[i][j], highlightthickness=0).grid(row=i, column=j)
+            tk.Canvas(main_canvas, width=50, height=50, bg=grid[i][j], highlightthickness=0).grid(row=i, column=j)
 
     master.config(bg=hex_val)
     generate_id(hex_val)
 
 
-master = Tk()
+master = tk.Tk()
 master.title("Identicon Generator")
 master.iconbitmap("pfp_icon.ico")
 
@@ -195,26 +194,26 @@ master.iconbitmap("pfp_icon.ico")
 grid = [["" for _ in range(7)] for _ in range(7)]
 
 # Frame to display the buttons
-buttons_frame = Frame(master)
-buttons_frame.pack(fill=X)
+buttons_frame = tk.Frame(master)
+buttons_frame.pack(fill="x")
 
 # Canvas to display the pattern
-main_canvas = Canvas(master, height=350, width=350, bg="#000000")
-main_canvas.pack(fill=X, padx=35, pady=35)
+main_canvas = tk.Canvas(master, height=350, width=350, bg="#000000")
+main_canvas.pack(fill="x", padx=35, pady=35)
 
 # New Pattern button
-b1 = Button(buttons_frame, text="New Pattern", command=lambda: new_patt(colour))
-b1.pack(side=LEFT, fill=X, expand=1)
+b1 = tk.Button(buttons_frame, text="New Pattern", command=lambda: new_patt(colour))
+b1.pack(side="left", fill="x", expand=1)
 b1.config(width=1)
 
 # New Colour button
-b2 = Button(buttons_frame, text="New Colour", command=lambda: new_pfp_colour(rand_hex()))
-b2.pack(side=LEFT, fill=X, expand=1)
+b2 = tk.Button(buttons_frame, text="New Colour", command=lambda: new_pfp_colour(rand_hex()))
+b2.pack(side="left", fill="x", expand=1)
 b2.config(width=1)
 
 # Custom button
-b3 = Button(buttons_frame, text="Custom", command=lambda: create_new_window())
-b3.pack(side=LEFT, fill=X, expand=1)
+b3 = tk.Button(buttons_frame, text="Custom", command=lambda: create_new_window())
+b3.pack(side="left", fill="x", expand=1)
 b3.config(width=1)
 
 # Generates a random colour with a random pattern on startup
