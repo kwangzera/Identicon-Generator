@@ -4,14 +4,14 @@ import tkinter as tk
 import os
 import re
 
-'''
+"""
 actual dimensions, real measurements of actual chs identicon
 do something about them imports
 general function for finding hex length stuff
 add better comments
 reformat code
 get rid of printing out the debug statement of pattern_id
-'''
+"""
 
 
 def create_new_window():
@@ -33,13 +33,13 @@ def create_new_window():
     display.set(pattern_id)
 
     # Entry object acting like a label
-    export_text = tk.Entry(new_window, relief='flat', textvariable=display, state='readonly', fg="blue", width=70)
+    export_text = tk.Entry(new_window, relief="flat", textvariable=display, state="readonly", fg="blue", width=70)
     export_text.grid(row=0, column=1, padx=1, pady=1)
 
     # Entry object to allow user to input an ID
     import_prompt = tk.Entry(new_window, fg="blue")
     import_prompt.grid(row=1, column=1, sticky="ew", padx=1, pady=1)
-    import_prompt.bind('<Return>', import_check)
+    import_prompt.bind("<Return>", import_check)
 
     # Save image promtp (add comment later)
     save_button = tk.Button(new_window, text="Click to save Identicon as PNG", command=lambda: save_image(pattern_id))  # add command later
@@ -65,16 +65,13 @@ def save_image(pattern_id):
     image1 = Image.new("RGB", (420, 420), hex_val)
     draw = ImageDraw.Draw(image1)
 
-    x1 = 35
-    y1 = 35
+    x1, y1 = 35, 35
+    x2, y2 = 85, 85
 
-    x2 = 85
-    y2 = 85
-
-    for i in range(7):
-        for j in range(7):
-            dx = 50 * j
-            if pattern[i][j] == "1":
+    for r in range(7):
+        for c in range(7):
+            dx = c * 50
+            if pattern[r][c] == "1":
                 draw.rectangle((x1+dx, y1, x2+dx, y2), fill=hex_val)
             else:
                 draw.rectangle((x1+dx, y1, x2+dx, y2), fill="#FFFFFF")
@@ -118,17 +115,17 @@ def import_check(event):
 def read_id(import_id):
     global colour
 
-    for i in range(7):
-        for j in range(7):
+    for r in range(7):
+        for c in range(7):
             # Display a white coloured tile
-            if pattern[i][j] == "0":
-                grid[i][j] = "#FFFFFF"
-                tk.Canvas(main_canvas, width=50, height=50, bg="#FFFFFF", highlightthickness=0).grid(row=i, column=j)
+            if pattern[r][c] == "0":
+                grid[r][c] = "#FFFFFF"
+                tk.Canvas(main_canvas, width=50, height=50, bg="#FFFFFF", highlightthickness=0).grid(row=r, column=c)
 
             # Display a coloured tile
             else:
-                grid[i][j] = hex_val
-                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
+                grid[r][c] = hex_val
+                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=r, column=c)
 
     # Updates border colour, sets new id and colour based on current colour
     master.config(bg=hex_val)
@@ -142,13 +139,13 @@ def generate_id(hex_val):
     # First part of the pattern is the hex value
     pattern_id = f"{hex_val}"
 
-    for i in range(7):
+    for r in range(7):
         # Separate values by an underscore
         pattern_id += "_"
 
         # Adding each row's binary strings to the pattern
-        for j in range(7):
-            if grid[i][j] == "#FFFFFF":
+        for c in range(7):
+            if grid[r][c] == "#FFFFFF":
                 pattern_id += "0"
             else:
                 pattern_id += "1"
@@ -156,11 +153,11 @@ def generate_id(hex_val):
 
 def new_pfp_colour(hex_val):
     global colour
-    for i in range(7):
-        for j in range(7):
+    for r in range(7):
+        for c in range(7):
             # Overwrite the current colour with a new colour if the current tile is not white0
-            if grid[i][j] != "#FFFFFF":
-                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=i, column=j)
+            if grid[r][c] != "#FFFFFF":
+                tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=r, column=c)
 
     master.config(bg=hex_val)
     generate_id(hex_val)
@@ -168,19 +165,19 @@ def new_pfp_colour(hex_val):
 
 
 def new_patt(hex_val):
-    for i in range(7):
+    for r in range(7):
         # Columns 1-3 = rows 5-7 (horizontally symmetrical)
-        for j in range(3):
+        for c in range(3):
             temp = choice([hex_val, "#FFFFFF"])
-            grid[i][j] = temp
-            grid[i][6 - j] = grid[i][j]
+            grid[r][c] = temp
+            grid[r][6-c] = grid[r][c]
 
         # Column 4 is random on its own
-        grid[i][3] = choice([hex_val, "#FFFFFF"])
+        grid[r][3] = choice([hex_val, "#FFFFFF"])
 
-    for i in range(7):
-        for j in range(7):
-            tk.Canvas(main_canvas, width=50, height=50, bg=grid[i][j], highlightthickness=0).grid(row=i, column=j)
+    for r in range(7):
+        for c in range(7):
+            tk.Canvas(main_canvas, width=50, height=50, bg=grid[r][c], highlightthickness=0).grid(row=r, column=c)
 
     master.config(bg=hex_val)
     generate_id(hex_val)
