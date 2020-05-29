@@ -1,9 +1,14 @@
 # Identicon Generator  
-Once downloaded, open the pfp_maker and double click pfp_maker.py to run the program.  
-Made using Python Tkinter.  
+Made using Python Tkinter. Once downloaded, run the following to start program.
+```
+python -m pfp_maker
+```
 
 ### Prerequisites
-In order for file saving to work, the Python Imaging Library (otherwise known as Pillow) must be installed.   
+In order for file saving to work, the Pillow library must must be installed.
+```
+pip install Pillow
+```
 
 ### Basics
 This program generates symmetrical 7 by 7 identicons.  
