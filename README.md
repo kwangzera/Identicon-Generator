@@ -3,7 +3,7 @@ Once downloaded, open the pfp_maker and double click pfp_maker.py to run the pro
 Made using Python Tkinter.  
 
 ### Prerequisites
-TBA
+In order for file saving to work, the Python Imaging Library (otherwise known as Pillow) must be installed.   
 
 ### Basics
 This program generates symmetrical 7 by 7 identicons.  

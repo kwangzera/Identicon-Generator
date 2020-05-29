@@ -1,17 +1,13 @@
-from PIL import Image, ImageDraw
-from random import randint, choice
-import tkinter as tk
 import os
 import re
+import tkinter as tk
+from random import randint, choice
+from PIL import Image, ImageDraw
 
 """
-do something about them imports (ordering)
-general function for finding hex length stuff
 add better comments
 reformat code
-get rid of printing out the debug statement of pattern_id
 """
-
 
 def create_new_window():
     global pattern_id
@@ -56,9 +52,11 @@ def rand_hex():
     return f"#{randint(0, 0xFFFFFF):06x}"
 
 
-def save_image(pattern_id):
-    hex_val = pattern_id[:7]
-    pattern = pattern_id[8:].split("_")
+def save_image(pattern_id):  # -> uses pattern
+    print(pattern_id)
+    split_hex(pattern_id)
+    # hex_val = pattern_id[:7]
+    # pattern = pattern_id[8:].split("_")
     new_window.destroy()
 
     image1 = Image.new("RGB", (420, 420), hex_val)
@@ -83,9 +81,15 @@ def save_image(pattern_id):
     os.startfile(filename)
 
 
-def valid_id(import_id):
+def split_hex(import_id):
     global hex_val
-    global pattern
+    global pattern    
+
+    hex_val = import_id[:7]
+    pattern = import_id[8:].split("_")
+
+def valid_id(import_id):  # -> uses pattern
+    split_hex(import_id)
 
     # If pattern is not a valid ID
     if not re.match(r"^#[0-9a-fA-F]{6}(_[01]{7}){7}$", import_id):
@@ -93,8 +97,8 @@ def valid_id(import_id):
 
     # If pattern is a valid ID, extract the hex and binary parts
     else:
-        hex_val = import_id[:7]
-        pattern = import_id[8:].split("_")
+        # hex_val = import_id[:7]
+        # pattern = import_id[8:].split("_")
         return True
 
 
@@ -111,7 +115,7 @@ def import_check(event):
         import_prompt.delete(0, "end")
 
 
-def read_id(import_id):
+def read_id(import_id):  # -> uses pattern
     global colour
 
     for r in range(7):
@@ -152,6 +156,7 @@ def generate_id(hex_val):
 
 def new_pfp_colour(hex_val):
     global colour
+
     for r in range(7):
         for c in range(7):
             # Overwrite the current colour with a new colour if the current tile is not white0
@@ -165,6 +170,7 @@ def new_pfp_colour(hex_val):
 
 def new_patt(hex_val):
     for r in range(7):
+        
         # Columns 1-3 = rows 5-7 (horizontally symmetrical)
         for c in range(3):
             temp = choice([hex_val, "#FFFFFF"])
