@@ -1,7 +1,8 @@
 """
 add better comments
 reformat code
-massive variable renaming operation
+massive variable renaming operationo
+prevent opening multiple files
 """
 
 import ctypes
