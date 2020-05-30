@@ -1,11 +1,6 @@
 # Identicon Generator  
-Made using Python Tkinter. Once downloaded, run the following to start program.  
-`python -m pfp_maker`
-
-### Prerequisites
-In order for file saving to work, the Pillow library must must be installed.  
-`pip install Pillow`  
-However, these steps have already been done in the batch file, so all you need to do is to run it.
+Once downloaded, double click `run.bat` to start the program.  
+All necessary libraries will be installed in a virtual environment.  
 
 ### Basics
 This program generates symmetrical 7 by 7 identicons.  
