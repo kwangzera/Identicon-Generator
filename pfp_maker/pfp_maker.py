@@ -1,6 +1,7 @@
 """
 add better comments
 reformat code
+massive variable renaming operation
 """
 
 import ctypes
@@ -57,12 +58,10 @@ def rand_hex():
     return f"#{randint(0, 0xFFFFFF):06x}"
 
 
-def save_image(pattern_id):  # -> uses pattern
+def save_image(pattern_id):
     global new_window, hex_val
-    print(pattern_id)
+
     split_hex(pattern_id)
-    # hex_val = pattern_id[:7]
-    # pattern = pattern_id[8:].split("_")
     new_window.destroy()
 
     image1 = Image.new("RGB", (420, 420), hex_val)
@@ -94,7 +93,7 @@ def split_hex(import_id):
     pattern = import_id[8:].split("_")
 
 
-def valid_id(import_id):  # -> uses pattern
+def valid_id(import_id):
     split_hex(import_id)
 
     # If pattern is not a valid ID
@@ -103,8 +102,6 @@ def valid_id(import_id):  # -> uses pattern
 
     # If pattern is a valid ID, extract the hex and binary parts
     else:
-        # hex_val = import_id[:7]
-        # pattern = import_id[8:].split("_")
         return True
 
 
@@ -122,7 +119,7 @@ def import_check(event):
         import_prompt.delete(0, "end")
 
 
-def read_id(import_id):  # -> uses pattern
+def read_id(import_id):
     global master, pattern, grid, hex_val, colour
 
     for r in range(7):
@@ -178,7 +175,6 @@ def new_pfp_colour(hex_val):
 def new_patt(hex_val):
     global master, grid
     for r in range(7):
-        
         # Columns 1-3 = rows 5-7 (horizontally symmetrical)
         for c in range(3):
             temp = choice([hex_val, "#FFFFFF"])
