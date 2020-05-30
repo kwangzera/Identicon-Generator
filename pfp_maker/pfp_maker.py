@@ -1,4 +1,6 @@
+import ctypes
 import os
+import pathlib
 import re
 import tkinter as tk
 from random import randint, choice
@@ -9,14 +11,15 @@ add better comments
 reformat code
 """
 
+PFP_ICON = pathlib.Path(__file__).joinpath("..", "pfp_icon.ico")
+
 def create_new_window():
-    global pattern_id
-    global new_window
-    global import_prompt
+    global master, new_window, pattern_id, import_prompt
 
     new_window = tk.Toplevel(master)
+    new_window.withdraw()  # hide window until ready
     new_window.title("Import and Export")
-    new_window.iconbitmap("pfp_icon.ico")
+    new_window.iconbitmap(PFP_ICON)
 
     # Import and Export Labels
     tk.Label(new_window, text="Export ID: ").grid(row=0, column=0, sticky="e")
@@ -45,7 +48,8 @@ def create_new_window():
     new_window.grab_set()
 
     new_window.resizable(False, False)
-    new_window.mainloop()
+    new_window.deiconify()  # show window until ready
+    new_window.wait_window()
 
 
 def rand_hex():
@@ -53,6 +57,7 @@ def rand_hex():
 
 
 def save_image(pattern_id):  # -> uses pattern
+    global new_window, hex_val
     print(pattern_id)
     split_hex(pattern_id)
     # hex_val = pattern_id[:7]
@@ -82,8 +87,7 @@ def save_image(pattern_id):  # -> uses pattern
 
 
 def split_hex(import_id):
-    global hex_val
-    global pattern    
+    global hex_val, pattern    
 
     hex_val = import_id[:7]
     pattern = import_id[8:].split("_")
@@ -103,6 +107,7 @@ def valid_id(import_id):  # -> uses pattern
 
 
 def import_check(event):
+    global new_window, import_prompt
     fetched_id = import_prompt.get().lower()
 
     # Close the new window if the ID is valid
@@ -116,7 +121,7 @@ def import_check(event):
 
 
 def read_id(import_id):  # -> uses pattern
-    global colour
+    global master, pattern, grid, hex_val, colour
 
     for r in range(7):
         for c in range(7):
@@ -137,7 +142,7 @@ def read_id(import_id):  # -> uses pattern
 
 
 def generate_id(hex_val):
-    global pattern_id
+    global grid, pattern_id
     
     # First part of the pattern is the hex value
     pattern_id = f"{hex_val}"
@@ -155,7 +160,7 @@ def generate_id(hex_val):
 
 
 def new_pfp_colour(hex_val):
-    global colour
+    global master, grid, colour
 
     for r in range(7):
         for c in range(7):
@@ -169,6 +174,7 @@ def new_pfp_colour(hex_val):
 
 
 def new_patt(hex_val):
+    global master, grid
     for r in range(7):
         
         # Columns 1-3 = rows 5-7 (horizontally symmetrical)
@@ -187,44 +193,51 @@ def new_patt(hex_val):
     master.config(bg=hex_val)
     generate_id(hex_val)
 
+def main():
+    global master, grid, main_canvas, colour
 
-master = tk.Tk()
-master.title("Identicon Generator")
-master.iconbitmap("pfp_icon.ico")
+    master = tk.Tk()
+    master.withdraw()
+    master.title("Identicon Generator")
+    master.iconbitmap(PFP_ICON)
+    
+    # set taskbar icon
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('pfp_maker')
 
-# 7 by 7 array to store hex values of each grid value of the pattern
-grid = [["" for _ in range(7)] for _ in range(7)]
+    # 7 by 7 array to store hex values of each grid value of the pattern
+    grid = [["" for _ in range(7)] for _ in range(7)]
 
-# Frame to display the buttons
-buttons_frame = tk.Frame(master)
-buttons_frame.pack(fill="x")
+    # Frame to display the buttons
+    buttons_frame = tk.Frame(master)
+    buttons_frame.pack(fill="x")
 
-# Canvas to display the pattern
-main_canvas = tk.Canvas(master, height=350, width=350, bg="#000000")
-main_canvas.pack(fill="x", padx=35, pady=35)
+    # Canvas to display the pattern
+    main_canvas = tk.Canvas(master, height=350, width=350, bg="#000000")
+    main_canvas.pack(fill="x", padx=35, pady=35)
 
-# New Pattern button
-b1 = tk.Button(buttons_frame, text="New Pattern", command=lambda: new_patt(colour))
-b1.pack(side="left", fill="x", expand=1)
-b1.config(width=1)
+    # New Pattern button
+    b1 = tk.Button(buttons_frame, text="New Pattern", command=lambda: new_patt(colour))
+    b1.pack(side="left", fill="x", expand=1)
+    b1.config(width=1)
 
-# New Colour button
-b2 = tk.Button(buttons_frame, text="New Colour", command=lambda: new_pfp_colour(rand_hex()))
-b2.pack(side="left", fill="x", expand=1)
-b2.config(width=1)
+    # New Colour button
+    b2 = tk.Button(buttons_frame, text="New Colour", command=lambda: new_pfp_colour(rand_hex()))
+    b2.pack(side="left", fill="x", expand=1)
+    b2.config(width=1)
 
-# Custom button
-b3 = tk.Button(buttons_frame, text="Custom", command=lambda: create_new_window())
-b3.pack(side="left", fill="x", expand=1)
-b3.config(width=1)
+    # Custom button
+    b3 = tk.Button(buttons_frame, text="Custom", command=lambda: create_new_window())
+    b3.pack(side="left", fill="x", expand=1)
+    b3.config(width=1)
 
-# Generates a random colour with a random pattern on startup
-colour = rand_hex()
-new_patt(colour)
+    # Generates a random colour with a random pattern on startup
+    colour = rand_hex()
+    new_patt(colour)
 
-# saves current image
-# save_image(colour)
+    # saves current image
+    # save_image(colour)
 
 
-master.resizable(False, False)
-master.mainloop()
+    master.resizable(False, False)
+    master.deiconify()
+    master.mainloop()
