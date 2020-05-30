@@ -1,3 +1,8 @@
+"""
+add better comments
+reformat code
+"""
+
 import ctypes
 import os
 import pathlib
@@ -6,12 +11,8 @@ import tkinter as tk
 from random import randint, choice
 from PIL import Image, ImageDraw
 
-"""
-add better comments
-reformat code
-"""
-
 PFP_ICON = pathlib.Path(__file__).joinpath("..", "pfp_icon.ico")
+
 
 def create_new_window():
     global master, new_window, pattern_id, import_prompt
@@ -91,6 +92,7 @@ def split_hex(import_id):
 
     hex_val = import_id[:7]
     pattern = import_id[8:].split("_")
+
 
 def valid_id(import_id):  # -> uses pattern
     split_hex(import_id)
@@ -193,6 +195,7 @@ def new_patt(hex_val):
     master.config(bg=hex_val)
     generate_id(hex_val)
 
+
 def main():
     global master, grid, main_canvas, colour
 
@@ -233,10 +236,6 @@ def main():
     # Generates a random colour with a random pattern on startup
     colour = rand_hex()
     new_patt(colour)
-
-    # saves current image
-    # save_image(colour)
-
 
     master.resizable(False, False)
     master.deiconify()
