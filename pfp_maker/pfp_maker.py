@@ -88,7 +88,7 @@ def save_image(pattern_id):
 
 
 def split_hex(import_id):
-    global hex_val, pattern    
+    global hex_val, pattern
 
     hex_val = import_id[:7]
     pattern = import_id[8:].split("_")
@@ -106,7 +106,7 @@ def valid_id(import_id):
         return True
 
 
-def import_check(event):
+def import_check():
     global new_window, import_prompt
     fetched_id = import_prompt.get().lower()
 
@@ -226,7 +226,7 @@ def main():
     b2.config(width=1)
 
     # Custom button
-    b3 = tk.Button(buttons_frame, text="Custom", command=lambda: create_new_window())
+    b3 = tk.Button(buttons_frame, text="Custom", command=create_new_window())
     b3.pack(side="left", fill="x", expand=1)
     b3.config(width=1)
 
