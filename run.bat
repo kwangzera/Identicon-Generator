@@ -7,4 +7,4 @@ echo installing requirements
 python -m pip install -r requirements.txt
 
 echo starting app
-start pythonw -m pfp_maker
+start pythonw -m src

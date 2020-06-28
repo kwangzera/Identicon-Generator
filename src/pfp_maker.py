@@ -13,7 +13,7 @@ import tkinter as tk
 from random import randint, choice
 from PIL import Image, ImageDraw
 
-PFP_ICON = pathlib.Path(__file__).joinpath("..", "pfp_icon.ico")
+PFP_ICON = pathlib.Path(__file__).joinpath("..", "../assets/pfp_icon.ico")
 
 
 def create_new_window():
