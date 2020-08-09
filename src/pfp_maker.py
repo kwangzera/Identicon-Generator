@@ -1,10 +1,3 @@
-"""
-fix function order
-add better comments
-reformat code
-massive variable renaming operation
-"""
-
 import ctypes
 import os
 import pathlib
