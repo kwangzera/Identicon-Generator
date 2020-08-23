@@ -1,5 +1,5 @@
 # Identicon Generator
-This program generates symmetrical 7 by 7 identicons and allows to use to create their own identicons via import and export codes.
+This program generates symmetrical 7 by 7 identicons and allows the creation of custom identicons via import and export codes.
 
 ### Setup
 Once downloaded, double click `run.bat` to start the program.  
