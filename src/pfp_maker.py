@@ -157,7 +157,7 @@ def new_pfp_colour(hex_val):
 
     for r in range(7):
         for c in range(7):
-            # Overwrite the current colour with a new colour if the current tile is not white0
+            # Overwrite the current colour with a new colour if the current tile is not white
             if grid[r][c] != "#FFFFFF":
                 tk.Canvas(main_canvas, width=50, height=50, bg=hex_val, highlightthickness=0).grid(row=r, column=c)
 
