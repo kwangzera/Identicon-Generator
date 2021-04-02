@@ -6,7 +6,7 @@ import tkinter as tk
 from random import randint, choice
 from PIL import Image, ImageDraw
 
-PFP_ICON = pathlib.Path(__file__).joinpath("..", "../assets/pfp_icon.ico")
+PFP_ICON = pathlib.Path(__file__).joinpath("..", "../assets/icons/pfp_icon.ico")
 
 
 def create_new_window():
@@ -136,7 +136,7 @@ def read_id(import_id):
 
 def generate_id(hex_val):
     global grid, pattern_id
-    
+
     # First part of the pattern is the hex value
     pattern_id = f"{hex_val}"
 
@@ -193,7 +193,7 @@ def main():
     master.withdraw()
     master.title("Identicon Generator")
     master.iconbitmap(PFP_ICON)
-    
+
     # set taskbar icon
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('pfp_maker')
 
