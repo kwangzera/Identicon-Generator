@@ -2,24 +2,24 @@
 This program generates symmetrical 7 by 7 identicons and allows the creation of custom identicons via import and export codes.
 
 ### Setup
-Once downloaded, double click `run.bat` to start the program.  
-All necessary libraries will be installed in a virtual environment.  
+Once downloaded, double click `run.bat` to start the program.\
+All necessary libraries will be installed in a virtual environment.
 
 ### Basics
-The `New Patten` and `New Colour` buttons generate a random pattern and a random colour respectively.  
-The `Custom` button brings up a dialog that allows you to import, export, and save identicons with a pattern ID.  
+The `New Patten` and `New Colour` buttons generate a random pattern and a random colour respectively.\
+The `Custom` button brings up a dialog that allows you to import, export, and save identicons with a pattern ID.
 
 ### Importing and Exporting
-Each pattern displayed can be represented by ID in the format of `#colour_pattern`.  
-`#colour` is a 6 character long hex value representing a colour.  
-`pattern` is a 7-length list of 7-length binary strings, joined by `_`.  
-In the pattern, `0` represents an empty tile (white) and `1` represents a filled tile (coloured).  
+Each pattern displayed can be represented by ID in the format of `#colour_pattern`.\
+`#colour` is a 6 character long hex value representing a colour.\
+`pattern` is a 7-length list of 7-length binary strings, joined by `_`.\
+In the pattern, `0` represents an empty tile (white) and `1` represents a filled tile (coloured).
 
 ### Saving an Identicon as PNG
-You also have to option to save an identicon as a PNG, after clicking the `Custom` button.  
-The image will be saved as `pattern_id.png` in the same file location as run.bat.  
-(Windows exclusive) A prompt will then appear to let you preview the image after it has been successfully saved.  
-The identicons located in `assets/demo` are the ones matching the Example IDs below.  
+You also have to option to save an identicon as a PNG, after clicking the `Custom` button.\
+The image will be saved as `pattern_id.png` in the same file location as run.bat.\
+(Windows exclusive) A prompt will then appear to let you preview the image after it has been successfully saved.\
+The identicons located in `assets/demo` are the ones matching the Example IDs below.
 
 ### Example IDs
 `#17ca0c_1001001_1000001_0111110_1101011_0010100_0101010_0011100`
