@@ -1,6 +1,8 @@
 # Identicon Generator
 This program generates symmetrical 7 by 7 identicons and allows the creation of custom identicons via import and export codes.
 
+![demo](https://github.com/Togohogo1/Identicon-Generator/blob/master/assets/screenshots/identicon_generator.png)
+
 ### Setup
 Once downloaded, double click `run.bat` to start the program.\
 All necessary libraries will be installed in a virtual environment.
