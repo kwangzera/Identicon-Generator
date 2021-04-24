@@ -18,7 +18,7 @@ In the pattern, `0` represents an empty tile (white) and `1` represents a filled
 
 ### Saving an Identicon as PNG
 You also have to option to save an identicon as a PNG, after clicking the `Custom` button.\
-The image will be saved as `pattern_id.png` in the same file location as run.bat.\
+The image will be saved as `pattern_id.png` in the same file location as `run.bat`.\
 (Windows exclusive) A prompt will then appear to let you preview the image after it has been successfully saved.\
 The identicons located in `assets/demo` are the ones matching the Example IDs below.
 
