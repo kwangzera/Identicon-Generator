@@ -7,7 +7,7 @@ This program generates symmetrical 7 by 7 identicons and allows the creation of 
 Once downloaded, double click `run.bat` to start the program. All necessary libraries will be installed in a virtual environment.
 
 ### Basics
-The `New Patten` and `New Colour` buttons generate a random pattern and a random colour respectively.\
+The `New Pattern` and `New Colour` buttons generate a random pattern and a random colour respectively.\
 The `Custom` button brings up a dialog that allows you to import, export, and save identicons with a pattern ID.
 
 ### Importing and Exporting
